@@ -22,7 +22,7 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
         public string Deletar(Usuario userDeletar)
         {
             users.Remove(userDeletar);
-            return "Usuário deletado"; 
+            return "Usuário deletado";
         }
     }
 }
