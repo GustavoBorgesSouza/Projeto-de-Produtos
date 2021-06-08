@@ -1,13 +1,14 @@
+using System.Collections.Generic;
 using AulaPOO_ProjetoDeProdutos.Classes;
 
 namespace AulaPOO_ProjetoDeProdutos.Interfaces
 {
     public interface IProduto
     {
-         string Cadastrar(Marca produtoCadastrar);
+        string Cadastrar(Produto produto, List<Marca> ListaMarcas);
 
-         void Listar();
+        void Listar();
 
-         string Deletar(Marca produtoDeletar);
+        string Deletar(Produto produtoDeletar);
     }
 }
