@@ -7,13 +7,7 @@ namespace AulaPOO_ProjetoDeProdutos
     {
         static void Main(string[] args)
         {
-            int IDuser = 1;
-
-            Usuario u = new Usuario(IDuser);
-
-            u.Cadastrar(u);
-
-            u.Mostrar();
+            
         }
     }
 }
