@@ -7,7 +7,7 @@ namespace AulaPOO_ProjetoDeProdutos
     {
         static void Main(string[] args)
         {
-            
+            Login l = new Login();
         }
     }
 }
