@@ -7,14 +7,24 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
 {
     public class Marca : IMarca
     {
-        public int codigo{get; set;}
-        public string NomeMarca{get; set;}
-        public DateTime DataCadastro{get; set;}
+        public int Codigo { get; set; }
+        public string NomeMarca { get; set; }
+        public DateTime DataCadastro { get; set; }
 
         List<Marca> listaMarcas = new List<Marca>();
 
-        public string Cadastrar(Marca marcaCadastrar)
+        public Marca(){}
+
+        public Marca(int IDmarca)
         {
+            Codigo = IDmarca;
+            Console.WriteLine("Qual o nome da marca?");
+            NomeMarca = Console.ReadLine();
+            DataCadastro = DateTime.Now;
+        }
+
+        public string Cadastrar(Marca marcaCadastrar)
+        {            
             listaMarcas.Add(marcaCadastrar);
             return "Marca Cadastrada";
         }
@@ -28,10 +38,19 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
         public void Listar()
         {
             Console.WriteLine("Aqui está a listagem de marcas");
-            foreach (Marca item in listaMarcas)
+            if (listaMarcas.Count > 0)
             {
-                Console.WriteLine($"codigo {item.codigo}, nome da marca: {item.NomeMarca} e data de cadastro: {item.DataCadastro}");
+                foreach (Marca item in listaMarcas)
+                {
+                    Console.WriteLine($"codigo {item.Codigo}, nome da marca: {item.NomeMarca} e data de cadastro: {item.DataCadastro}");
+                }
+            } else{
+                Console.WriteLine("lista vazia");
             }
+        }
+
+        public List<Marca> ListarExistentes(){
+            return listaMarcas;
         }
     }
 }
