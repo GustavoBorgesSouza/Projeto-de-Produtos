@@ -40,7 +40,7 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
 
         public void Listar()
         {
-            Console.WriteLine("Produtos cadastrados: ");
+            Console.WriteLine("Produtos cadastrados:");
             foreach (Produto item in ListaDeProdutos)
             {
                 Console.WriteLine($"Código: {item.Codigo}, Nome do produto: {item.NomeProduto}, Preço: {item.Preco}, Data de cadastro: {item.DataCadastro}, Marca: {item.marca}, Cadastrado Por: {item.CadastradoPor}");
