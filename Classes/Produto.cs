@@ -14,37 +14,60 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
         public Usuario CadastradoPor { get; set; }
         List<Produto> ListaDeProdutos = new List<Produto>();
 
-        public Produto(int IDcodigo, Usuario usuario)
+        public Produto(int IDcodigo, Usuario usuario, Marca marca)
         {
             Codigo = IDcodigo;
             Console.WriteLine("Digite o nome do produto: ");
             NomeProduto = Console.ReadLine();
-            Console.WriteLine("Digite o preco do produto: ");
+            Console.WriteLine("\nDigite o preco do produto em reais: ");
             Preco = float.Parse(Console.ReadLine());
             DataCadastro = DateTime.Now;
-            CadastradoPor = usuario;
+            CadastradoPor = usuario.Nome;
+            Marca = marca.NomeMarca;
             IDcodigo++;
         }
 
-        public string Cadastrar(Produto produto)
+        public string Cadastrar(Produto produto, List<Marca> ListaMarcas)
         {
-            ListaDeProdutos.Add(produto);
-            return "Produto Cadastrado!";
+            if (ListaMarcas.Count > 0)
+            {
+                ListaDeProdutos.Add(produto);
+                return "\nProduto Cadastrado!";
+            }
+
+            else
+            {
+                return "Não é possível cadastrar um produto se não há marca";
+            }
         }
 
         public string Deletar(Produto produto)
         {
             ListaDeProdutos.Remove(produto);
-            return "Produto deletado!";
+            return "\nProduto deletado!";
         }
 
         public void Listar()
         {
-            Console.WriteLine("Produtos cadastrados:");
-            foreach (Produto item in ListaDeProdutos)
+            Console.WriteLine("\nProdutos cadastrados: ");
+
+            if (ListaDeProdutos.Count > 0)
             {
-                Console.WriteLine($"Código: {item.Codigo}, Nome do produto: {item.NomeProduto}, Preço: {item.Preco}, Data de cadastro: {item.DataCadastro}, Marca: {item.marca}, Cadastrado Por: {item.CadastradoPor}");
+                foreach (Produto item in ListaDeProdutos)
+                {
+                    Console.WriteLine($"Código: {item.Codigo}, Nome do produto: {item.NomeProduto}, Preço: {item.Preco}, Data de cadastro: {item.DataCadastro}, Marca: {item.marca}, Cadastrado Por: {item.CadastradoPor}");
+                }
             }
+
+            else
+            {
+                Console.WriteLine("A lista está vazia!!!");
+            }
+        }
+
+        public List<Produto> ListarExistentes()
+        {
+            return ListaDeProdutos;
         }
     }
 }
