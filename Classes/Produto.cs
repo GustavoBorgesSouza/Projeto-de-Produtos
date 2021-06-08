@@ -10,21 +10,32 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
         public string NomeProduto { get; set; }
         public float Preco { get; set; }
         public DateTime DataCadastro { get; set; }
-
         public Marca marca { get; set; }
         public Usuario CadastradoPor { get; set; }
-
         List<Produto> ListaDeProdutos = new List<Produto>();
-        public string Cadastrar(Produto produtoCadastrar)
+
+        public Produto(int IDcodigo, Usuario usuario)
         {
-            ListaDeProdutos.Add(produtoCadastrar);
-            return "Produto Cadastrado";
+            Codigo = IDcodigo;
+            Console.WriteLine("Digite o nome do produto: ");
+            NomeProduto = Console.ReadLine();
+            Console.WriteLine("Digite o preco do produto: ");
+            Preco = float.Parse(Console.ReadLine());
+            DataCadastro = DateTime.Now;
+            CadastradoPor = usuario;
+            IDcodigo++;
         }
 
-        public string Deletar(Produto produtoDeletar)
+        public string Cadastrar(Produto produto)
         {
-            ListaDeProdutos.Remove(produtoDeletar);
-            return "Produto deletado";
+            ListaDeProdutos.Add(produto);
+            return "Produto Cadastrado!";
+        }
+
+        public string Deletar(Produto produto)
+        {
+            ListaDeProdutos.Remove(produto);
+            return "Produto deletado!";
         }
 
         public void Listar()

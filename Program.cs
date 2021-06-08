@@ -1,4 +1,5 @@
 ﻿using System;
+using AulaPOO_ProjetoDeProdutos.Classes;
 
 namespace AulaPOO_ProjetoDeProdutos
 {
@@ -6,7 +7,6 @@ namespace AulaPOO_ProjetoDeProdutos
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
         }
     }
 }
