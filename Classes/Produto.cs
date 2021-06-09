@@ -14,30 +14,36 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
         public Usuario CadastradoPor { get; set; }
         List<Produto> ListaDeProdutos = new List<Produto>();
 
-        public Produto(int IDcodigo, Usuario usuario, Marca marca)
+        public Produto(string Logado, int IDcodigo, List<Usuario> usuario, List<Marca> listaMarcas)
         {
             Codigo = IDcodigo;
             Console.WriteLine("Digite o nome do produto: ");
             NomeProduto = Console.ReadLine();
-            Console.WriteLine("\nDigite o preco do produto em reais: ");
+            Console.WriteLine("\nDigite o preço do produto: R$");
             Preco = float.Parse(Console.ReadLine());
             DataCadastro = DateTime.Now;
-            // Marca = marca.NomeMarca;
-            // CadastradoPor = usuario.Nome;
+
+            CadastradoPor = usuario.Find(item => item.Nome == Logado);
+            Console.Write("Digite o nome da marca: ");
+            string VerificarMarca = Console.ReadLine();
+            marca = listaMarcas.Find(item => item.NomeMarca == VerificarMarca);
             IDcodigo++;
         }
 
-        public string Cadastrar(Produto produto, List<Marca> ListaMarcas)
+        public string Cadastrar(Produto produto, List<Marca> listaMarcas)
         {
-            if (ListaMarcas.Count > 0)
-            {
-                ListaDeProdutos.Add(produto);
-                return "\nProduto Cadastrado!";
-            }
 
-            else
             {
-                return "Não é possível cadastrar um produto se não há marca";
+                if (listaMarcas.Count > 0)
+                {
+                    ListaDeProdutos.Add(produto);
+                    return "\nProduto Cadastrado!";
+                }
+
+                else
+                {
+                    return "Não é possível cadastrar um produto se não há marca";
+                }
             }
         }
 
