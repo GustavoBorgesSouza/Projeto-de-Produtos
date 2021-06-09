@@ -40,6 +40,7 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
             Console.WriteLine("Aqui está a listagem de marcas");
             if (listaMarcas.Count > 0)
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 foreach (Marca item in listaMarcas)
                 {
                     Console.WriteLine($"codigo {item.Codigo}, nome da marca: {item.NomeMarca} e data de cadastro: {item.DataCadastro}");
@@ -47,6 +48,7 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
             } else{
                 Console.WriteLine("lista vazia");
             }
+            Console.ResetColor();
         }
 
         public List<Marca> ListarExistentes(){

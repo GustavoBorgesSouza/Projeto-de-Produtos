@@ -14,7 +14,9 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
         public Usuario CadastradoPor { get; set; }
         List<Produto> ListaDeProdutos = new List<Produto>();
 
-        public Produto(string Logado, int IDcodigo, List<Usuario> usuario, List<Marca> listaMarcas)
+        public Produto(){}
+
+        public Produto(int IDcodigo, Usuario user, List<Marca> listaMarcas)
         {
             Codigo = IDcodigo;
             Console.WriteLine("Digite o nome do produto: ");
@@ -23,26 +25,26 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
             Preco = float.Parse(Console.ReadLine());
             DataCadastro = DateTime.Now;
 
-            CadastradoPor = usuario.Find(item => item.Nome == Logado);
+            CadastradoPor = user;
             Console.Write("Digite o nome da marca: ");
             string VerificarMarca = Console.ReadLine();
             marca = listaMarcas.Find(item => item.NomeMarca == VerificarMarca);
-            IDcodigo++;
         }
 
-        public string Cadastrar(Produto produto, List<Marca> listaMarcas)
+        public string Cadastrar(Produto produto, List<Marca> listaMarcas, int IDproduto)
         {
 
             {
-                if (listaMarcas.Count > 0)
+                if (listaMarcas.Count > 0 && produto.marca != null)
                 {
                     ListaDeProdutos.Add(produto);
-                    return "\nProduto Cadastrado!";
+                    IDproduto++;
+                    return "\n Produto Cadastrado!";
                 }
 
                 else
                 {
-                    return "Não é possível cadastrar um produto se não há marca";
+                    return "Não é possível cadastrar um produto quando não há marcas ou a marca é inexstente";
                 }
             }
         }
@@ -50,18 +52,19 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
         public string Deletar(Produto produto)
         {
             ListaDeProdutos.Remove(produto);
-            return "\nProduto deletado!";
+            return "\n Produto deletado!";
         }
 
         public void Listar()
         {
-            Console.WriteLine("\nProdutos cadastrados: ");
+            Console.WriteLine("\n Produtos cadastrados: ");
 
             if (ListaDeProdutos.Count > 0)
             {
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 foreach (Produto item in ListaDeProdutos)
                 {
-                    Console.WriteLine($"Código: {item.Codigo}, Nome do produto: {item.NomeProduto}, Preço: {item.Preco}, Data de cadastro: {item.DataCadastro}, Marca: {item.marca}, Cadastrado Por: {item.CadastradoPor}");
+                    Console.WriteLine($@"Código: {item.Codigo}, Nome do produto: {item.NomeProduto}, Preço: {item.Preco:C2}, Data de cadastro: {item.DataCadastro}, Marca: {item.marca.NomeMarca}, Cadastrado Por: {item.CadastradoPor.Nome}");
                 }
             }
 
@@ -69,6 +72,8 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
             {
                 Console.WriteLine("A lista está vazia!!!");
             }
+
+            Console.ResetColor();
         }
 
         public List<Produto> ListarExistentes()

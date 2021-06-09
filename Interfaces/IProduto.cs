@@ -5,7 +5,7 @@ namespace AulaPOO_ProjetoDeProdutos.Interfaces
 {
     public interface IProduto
     {
-        string Cadastrar(Produto produto, List<Marca> ListaMarcas);
+        string Cadastrar(Produto produto, List<Marca> ListaMarcas, int IDproduto);
 
         void Listar();
 
