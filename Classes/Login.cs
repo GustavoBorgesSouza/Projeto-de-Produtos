@@ -14,8 +14,10 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
             int IDmarca = 1;
             int IDproduto = 1;
             int i = 0;
-            Marca m = new Marca();
-            Produto p = new Produto();
+
+            Marca m = new Marca(); //Objeto pai
+            Produto p = new Produto(); //Objeto pai
+
             Console.WriteLine("\n Vamos te cadastrar");
 
             Usuario u = new Usuario(IDuser);
@@ -30,12 +32,12 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
 
             do
             {
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine($@"
                  Estamos no sistema, o que você deseja fazer?
 
             1 - Cadastrar marca
-            2 - listar marcas
+            2 - Listar marcas
             3 - Deletar marca
             4 - Cadastrar produtos
             5 - Listar produtos
@@ -49,17 +51,17 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
                 switch (opcao)
                 {
                     case "1":
-                        Marca marca = new Marca(IDmarca);
-                        Console.WriteLine(m.Cadastrar(marca));
+                        Marca marca = new Marca(IDmarca); //Cria a marca pedindo o que é necessário
+
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.WriteLine(m.Cadastrar(marca)); //Adiciona a marca a lista do objeto pai
+                        Console.ResetColor();
                         i++;
                         IDmarca++;
-
-                        logado = true;
                         break;
 
                     case "2":
                         m.Listar();
-                        logado = true;
                         break;
 
                     case "3":
@@ -69,24 +71,26 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
 
                         Marca encontrada = procurarMarcas.Find(item => item.NomeMarca == marcaDel);
 
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine(m.Deletar(encontrada));
-
-                        logado = true;
+                        Console.ResetColor();
                         break;
+
                     case "4":
                         Produto produto = new Produto(IDproduto, u, m.ListarExistentes());
-                        if (p.Cadastrar(produto, m.ListarExistentes(), IDproduto) == "\n Produto Cadastrado!")
+                        if (p.Cadastrar(produto, m.ListarExistentes(), IDproduto) == "\n Produto Cadastrado!") //Cria um produto e verifica se a marca existe
                         {
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            Console.WriteLine("Produto cadastrado com sucesso!");
                             IDproduto++;
+                            Console.ResetColor();
                         }
-
-                        logado = true;
                         break;
 
                     case "5":
                         p.Listar();
-                        logado = true;
                         break;
+
                     case "6":
                         Console.WriteLine("Qual produto você deseja deletar?");
                         string produtoDel = Console.ReadLine();
@@ -94,16 +98,21 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
 
                         Produto encontrado = procurarProdutos.Find(item => item.NomeProduto == produtoDel);
 
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine(p.Deletar(encontrado));
-
-                        logado = true;
-
+                        Console.ResetColor();
                         break;
+
                     case "7":
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
                         Console.Write(Deslogar(u));
+                        Console.ResetColor();
                         break;
+
                     default:
-                        logado = true;
+                        Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                        Console.WriteLine("Essa não é uma das opções validas, digite uma válida");
+                        Console.ResetColor();
                         break;
                 }
 

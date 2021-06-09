@@ -43,7 +43,7 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 foreach (Marca item in listaMarcas)
                 {
-                    Console.WriteLine($"codigo {item.Codigo}, nome da marca: {item.NomeMarca} e data de cadastro: {item.DataCadastro}");
+                    Console.WriteLine($"Codigo {item.Codigo}, nome da marca: {item.NomeMarca} e data de cadastro: {item.DataCadastro}");
                 }
             } else{
                 Console.WriteLine("lista vazia");
