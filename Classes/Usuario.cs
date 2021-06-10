@@ -32,13 +32,6 @@ namespace AulaPOO_ProjetoDeProdutos.Classes
             return "Usuário cadastrado"; 
         }
 
-        public void Mostrar(){
-            foreach (Usuario item in users)
-            {
-                Console.WriteLine($"{item.Nome} e codigo {item.Codigo}");
-            }
-        }
-
         public string Deletar(Usuario userDeletar)
         {
             users.Remove(userDeletar);
